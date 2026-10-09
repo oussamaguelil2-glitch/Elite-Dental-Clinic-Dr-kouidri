@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Dental Clinic Dr. Kouidri</title>
+    <style>
+        :root {
+            --bg-dark: #071a2d;
+            --bg-mid: #102b43;
+            --bg-light: #f3f7fb;
+            --card: #ffffff;
+            --accent: #8fe3ff;
+            --accent-strong: #53c7f4;
+            --text-dark: #0d1b2a;
+            --text-light: #ecf7ff;
+            --muted: #536a7c;
+            --border: rgba(12, 26, 41, 0.1);
+            --shadow: 0 18px 40px rgba(7, 26, 45, 0.16);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+        a { color: inherit; text-decoration: none; }
+        .container {
+            width: min(1120px, calc(100% - 2rem));
+            margin: 0 auto;
+        }
+        .topbar {
+            background: linear-gradient(135deg, var(--bg-dark), var(--bg-mid));
+            color: var(--text-light);
+            padding: 1rem 0;
+        }
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: none;
+            line-height: 1.2;
+        }
+        .brand-mark {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #dff8ff, #7ad8ff);
+            color: #071a2d;
+            font-size: 1.7rem;
+            box-shadow: 0 10px 30px rgba(122, 216, 255, 0.35);
+            border: 2px solid rgba(255,255,255,0.35);
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+            white-space: normal;
+        }
+        .brand-text strong {
+            font-size: 1.05rem;
+        }
+        .brand-text span {
+            font-size: 0.72rem;
+            opacity: 0.8;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .nav {
+            display: flex;
+            gap: 1.25rem;
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+        }
+        .nav a { opacity: 0.85; }
+        .nav a:hover { opacity: 1; }
+        .hero {
+            background-image: linear-gradient(135deg, rgba(7, 26, 45, 0.84), rgba(16, 43, 67, 0.74), rgba(83, 199, 244, 0.55)), url('images/496924970_122101983560866908_8553458366965717692_n.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 5rem 0 4rem;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        .eyebrow {
+            display: inline-block;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            line-height: 1.1;
+            margin: 0 0 1rem;
+        }
+        .hero p {
+            max-width: 620px;
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0 0 2rem;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            border: none;
+            border-radius: 999px;
+            padding: 0.9rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-primary {
+            background: var(--accent);
+            color: #082f49;
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: var(--text-light);
+        }
+        .hero-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .hero-card img {
+            display: block;
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .stat {
+            background: rgba(15, 23, 42, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 1rem;
+        }
+        .stat strong {
+            display: block;
+            font-size: 1.7rem;
+            margin-bottom: 0.2rem;
+        }
+        .section { padding: 5rem 0; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .section-header h2 {
+            margin: 0 0 1rem;
+            font-size: clamp(2rem, 3vw, 3rem);
+        }
+        .section-header p {
+            color: var(--muted);
+            margin: 0 auto;
+            max-width: 700px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .service-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+        }
+        .service-card img {
+            display: block;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .service-content {
+            padding: 1.5rem 1.25rem 1.75rem;
+        }
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            font-size: 1.6rem;
+            background: rgba(56, 189, 248, 0.12);
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            margin: 0 0 0.75rem;
+            font-size: 1.5rem;
+        }
+        .service-card p,
+        .about-copy p,
+        .about-list li,
+        .contact-copy p {
+            color: var(--muted);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        .about-image {
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .about-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+        }
+        .about-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        .about-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0 0;
+            display: grid;
+            gap: 0.8rem;
+        }
+        .about-list li::before {
+            content: "✓";
+            color: var(--accent-strong);
+            font-weight: 700;
+            margin-right: 0.6rem;
+        }
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .contact-card,
+        .form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+        .contact-card { padding: 2rem; }
+        .contact-list {
+            list-style: none;
+            margin: 2rem 0 0;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+        .contact-list li {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            color: var(--muted);
+        }
+        .contact-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(56, 189, 248, 0.12);
+            display: grid;
+            place-items: center;
+            color: var(--accent-strong);
+            font-weight: 700;
+        }
+        .form-card { padding: 2rem; }
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+        .field-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            font: inherit;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #f8fafc;
+            color: var(--text-dark);
+            resize: vertical;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: 2px solid rgba(56, 189, 248, 0.25);
+            border-color: var(--accent);
+        }
+        .submit-btn {
+            width: fit-content;
+            min-width: 180px;
+        }
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        @media (max-width: 860px) {
+            .hero-grid,
+            .about-grid,
+            .contact-wrap { grid-template-columns: 1fr; }
+            .topbar-inner { flex-direction: column; }
+        }
+        @media (max-width: 520px) {
+            .field-row { grid-template-columns: 1fr; }
+            .hero { padding-top: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <div class="brand" aria-label="Elite Dental Clinic Dr kouidri logo">
+                <div class="brand-mark">🦷</div>
+                <div class="brand-text">
+                    <strong>Elite Dental Clinic</strong>
+                    <span>Dr kouidri</span>
+                </div>
+            </div>
+            <nav class="nav" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <span class="eyebrow">Premium dental care</span>
+                    <h1>A brighter smile starts here.</h1>
+                    <p>Modern dental care with a gentle touch, advanced technology, and a personalized treatment experience for every smile.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#contact">Book Consultation</a>
+                        <a class="btn btn-secondary" href="#services">Our Treatments</a>
+                    </div>
+                </div>
+
+                <div class="hero-card" aria-label="Dental clinic interior photo">
+                    <img src="images/496846310_122101786070866908_6687496228907601349_n.jpg" />
+                    <h2>Comfort-first dental care</h2>
+                    <div class="stat-grid">
+                        <div class="stat"><strong>8k+</strong><span>Smiles</span></div>
+                        <div class="stat"><strong>15+</strong><span>Years</span></div>
+                        <div class="stat"><strong>98%</strong><span>Satisfaction</span></div>
+                        <div class="stat"><strong>4.9/5</strong><span>Reviews</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Treatments</h2>
+                    <p>Tailored dental solutions designed to restore health, confidence, and comfort with precision and care.</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service-card">
+                        <img src="images/496411111_122101983476866908_1164398205567770535_n.jpg" alt="Dental chair treatment room" />
+                        <div class="service-content">
+                            <div class="service-icon">✨</div>
+                            <h3>Smile Design</h3>
+                            <p>Enhance the appearance of your smile with personalized cosmetic treatments and modern finishing techniques.</p>
+                        </div>
+                    </article>
+                    <article class="service-card">
+                        <img src="images/496480881_122101786946866908_6971566179876138785_n.jpg" alt="Dental clinic reception" />
+                        <div class="service-content">
+                            <div class="service-icon">📅</div>
+                            <h3>Consultation</h3>
+                            <p>Friendly and detailed consultations to understand your needs and create the right treatment plan.</p>
+                        </div>
+                    </article>
+                    <article class="service-card">
+                        <img src="images/496617754_122101983518866908_9016354035850139054_n.jpg" alt="Dental equipment and chair" />
+                        <div class="service-content">
+                            <div class="service-icon">🦷</div>
+                            <h3>Preventive Care</h3>
+                            <p>Routine check-ups, cleanings, and ongoing care help protect your oral health for the long term.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section" style="background:#eef7ff;">
+            <div class="container about-grid">
+                <div class="about-copy">
+                    <div class="section-header" style="text-align:left; margin-bottom:1.5rem;">
+                        <h2>Why choose us</h2>
+                    </div>
+                    <p>Elite Dental Clinic combines modern technology, a warm environment, and expert care to make every dental visit comfortable and effective.</p>
+                    <p>From preventive visits to smile enhancement treatments, our team focuses on delivering safe, precise, and personalized care that supports long-term oral health.</p>
+                </div>
+
+                <div class="about-image">
+                    <img src="images/496480881_122101786946866908_6971566179876138785_n.jpg" alt="Elite Dental Clinic reception area" />
+                </div>
+
+                <div class="about-panel">
+                    <h3 style="margin-top:0;">What we provide</h3>
+                    <ul class="about-list">
+                        <li>Precision dental exams</li>
+                        <li>Healthy smile check-ups</li>
+                        <li>Cosmetic dental care</li>
+                        <li>Teeth whitening and polishing</li>
+                        <li>Preventive and restorative treatment</li>
+                        <li>Friendly guidance and support</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container contact-wrap">
+                <div class="contact-card">
+                    <div class="section-header" style="text-align:left; margin-bottom:1rem;">
+                        <h2>Book a visit</h2>
+                    </div>
+                    <p>Share your details and our team will contact you to schedule your consultation and smile evaluation.</p>
+                    <ul class="contact-list">
+                        <li><span class="contact-badge">✆</span><span>+213 000 000 000</span></li>
+                        <li><span class="contact-badge">✉</span><span>hello@elitedentalclinic.com</span></li>
+                        <li><span class="contact-badge">⌂</span><span>Your clinic address here</span></li>
+                    </ul>
+                </div>
+
+                <div class="form-card">
+                    <form class="contact-form" action="#" method="post">
+                        <div class="field-row">
+                            <input type="text" name="name" placeholder="Name" aria-label="Name">
+                            <input type="email" name="email" placeholder="Email" aria-label="Email">
+                        </div>
+                        <div class="field-row">
+                            <input type="tel" name="phone" placeholder="Phone" aria-label="Phone">
+                            <input type="text" name="subject" placeholder="Subject" aria-label="Subject">
+                        </div>
+                        <textarea rows="5" name="message" placeholder="Your message" aria-label="Your message"></textarea>
+                        <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h2 style="margin:0 0 0.5rem; font-size:1.3rem;">© 2025 Elite Dental Clinic Dr. Kouidri</h2>
+            <p style="margin:0; opacity:0.8;">Confident smiles, healthy teeth, and compassionate dental care.</p>
+        </div>
+    </footer>
+</body>
+</html>
